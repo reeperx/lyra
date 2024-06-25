@@ -12,6 +12,7 @@ import { chatSession } from "@/utils/AiModal";
 import { db } from "@/utils/db";
 import { AIOutput } from "@/utils/schema";
 import { useUser } from "@clerk/nextjs";
+import moment from "moment";
 
 interface PROPS {
   params: {
@@ -35,7 +36,7 @@ function CreateContent(props: PROPS) {
 
     console.log(result.response.text());
     setAiOutput(result?.response.text());
-    await SaveInDb(FormData, selectedTemplate?.slug, aiOutput)
+    await SaveInDb(FormData, selectedTemplate?.slug, result.response.text())
     setLoading(false);
   };
 
@@ -45,6 +46,7 @@ function CreateContent(props: PROPS) {
         templateSlug: slug,
         aiResponse: aiResp,
         createdBy:user?.primaryEmailAddress?.emailAddress,
+        createdAt: moment().format("DD/MM/YYYY"),
     })
   }
   return (
