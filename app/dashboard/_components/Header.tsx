@@ -11,7 +11,7 @@ function Header({}: Props) {
             <input type="text" placeholder='search...' className='outline-none text-primary'/>
         </div>
         <div>
-            <h2 className='bg-primary p-1 rounded-full text-white text-sm px-2'>💰 Join membership from just R50.00/Month</h2>
+            <h2 className='bg-primary p-1 rounded-full text-white text-sm px-2'>💰 Join membership from just R100.00/Month</h2>
         </div>
     </div>
   )

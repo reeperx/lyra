@@ -1,6 +1,9 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import SideNav from "./_components/SideNav";
 import Header from "./_components/Header";
+import { UserSubscriptionContext } from "../(context)/UserSubscriptionContext";
 
 type Props = {};
 
@@ -9,7 +12,12 @@ function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [totalUsage,setTotalUsage]=useState<Number>(0);
+    const [userSubscription,setUserSubscription]=useState<boolean>(false);
+    const [updateCreditUsage,setUpdateCreditUsage]=useState<any>()
+
   return (
+    <UserSubscriptionContext.Provider value={{userSubscription,setUserSubscription}}>
     <div className="bg-slate-100 h-screen">
       <div className="md:w-64 hidden md:block fixed">
         <SideNav />
@@ -19,6 +27,7 @@ function Layout({
         {children}
       </div>
     </div>
+    </UserSubscriptionContext.Provider>
   );
 }
 
